@@ -5,7 +5,7 @@ name: CI/CD Pipeline
     - main
 jobs:
   checkoutCode:
-    runs-on: ubntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: action download
       uses: action/download-artifact@v3
