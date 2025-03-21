@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-    - main
+      - main
   schedule:
-  - cron: '1 13 * * * 1-5 '
+    - cron: '1 13 * * * 1-5 '
 jobs:
   Checkout code:
     runs-on: ubuntu-latest
