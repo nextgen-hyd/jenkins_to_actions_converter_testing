@@ -7,11 +7,6 @@ jobs:
   checkoutCode:
     runs-on: ubuntu-latest
     steps:
-    # - name: action download
-    #   uses: action/upload-artifact@v3
-    #   with:
-    #     name: build
-    #     path: dist
     - name: Checkout code
       uses: actions/checkout@v2
       with:
