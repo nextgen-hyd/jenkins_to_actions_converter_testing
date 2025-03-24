@@ -1,4 +1,4 @@
-name: Deploy Workflow with Approval
+name: Deploy Workflow with Manual Approval
  
 on:
   workflow_dispatch:
@@ -25,14 +25,14 @@ jobs:
   approval:
     needs: pre-deploy
     runs-on: ubuntu-latest
-    environment: production  # Requires approval in the 'production' environment
+    environment: production  # This forces the job to wait for approval
     steps:
       - name: Await Manual Approval
-        run: echo "Approval required before proceeding with deployment."
+        run: echo "Approval required. Approve this job to continue."
  
   deploy:
     needs: approval
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Application
-        run: echo "Deploying to AWS region ${{ inputs.selectedRegion }}"
+        run: echo "Deploying to AWS region: ${{ inputs.selectedRegion }}"
