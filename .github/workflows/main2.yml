@@ -1,11 +1,11 @@
-name: Deploy Workflow
+name: Deploy Workflow with Approval
  
 on:
   workflow_dispatch:
     inputs:
       selectedRegion:
         description: 'AWS Region for deployment'
-        required: false
+        required: true
         type: choice
         options:
           - us-east-1
@@ -15,8 +15,6 @@ on:
 jobs:
   pre-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      selectedRegion: ${{ steps.set-region.outputs.selectedRegion }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -24,15 +22,17 @@ jobs:
       - name: Run Initial Steps
         run: echo "Running pre-deployment tasks..."
  
-      - name: Request Region Input
-        if: ${{ github.event.inputs.selectedRegion == '' }}
-        run: |
-          echo "Please select a region and re-run the workflow."
-          exit 1  # This forces the workflow to stop until the user provides input.
+  approval:
+    needs: pre-deploy
+    runs-on: ubuntu-latest
+    environment: production  # Requires approval in the 'production' environment
+    steps:
+      - name: Await Manual Approval
+        run: echo "Approval required before proceeding with deployment."
  
   deploy:
-    needs: pre-deploy
+    needs: approval
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Application
-        run: echo "Deploying to AWS region ${{ github.event.inputs.selectedRegion }}"
+        run: echo "Deploying to AWS region: ${{ inputs.selectedRegion }}"
