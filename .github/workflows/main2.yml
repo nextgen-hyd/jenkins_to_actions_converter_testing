@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
  
       - name: Set Selected Region
-        run: echo "Deploying in ${{ inputs.selectedRegion }}. Consider deploying resources in these regions: us-east-1, us-west-1, eu-west-1"
+        run: echo "Deploying in ${{ inputs.selectedRegion }}."
  
       - name: Deploy Application
         run: |
