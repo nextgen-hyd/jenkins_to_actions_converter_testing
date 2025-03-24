@@ -5,7 +5,7 @@ on:
     inputs:
       selectedRegion:
         description: 'AWS Region for deployment'
-        required: true
+        required: false
         type: choice
         options:
           - us-east-1
@@ -13,16 +13,26 @@ on:
           - eu-west-1
  
 jobs:
-  deploy:
+  pre-deploy:
     runs-on: ubuntu-latest
+    outputs:
+      selectedRegion: ${{ steps.set-region.outputs.selectedRegion }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
  
-      - name: Set Selected Region
-        run: echo "Deploying in ${{ inputs.selectedRegion }}."
+      - name: Run Initial Steps
+        run: echo "Running pre-deployment tasks..."
  
-      - name: Deploy Application
+      - name: Request Region Input
+        if: ${{ github.event.inputs.selectedRegion == '' }}
         run: |
-          echo "Deploying to AWS region: ${{ inputs.selectedRegion }}"
-          # Add deployment scripts here
+          echo "Please select a region and re-run the workflow."
+          exit 1  # This forces the workflow to stop until the user provides input.
+ 
+  deploy:
+    needs: pre-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying to AWS region: ${{ github.event.inputs.selectedRegion }}"
