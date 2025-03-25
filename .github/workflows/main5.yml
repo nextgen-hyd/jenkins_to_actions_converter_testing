@@ -1,0 +1,24 @@
+name: Testing Inputs
+on:
+  push:
+    branches:
+    - main
+  inputs:
+    choice_inputs:
+      description: Select one choice parameter
+      options:
+      - option 1
+      - option 2
+      - option 3
+
+    string_inputs:
+      description: give the string input
+      required: true
+      default_value: default_value_added
+
+    boolean_inputs:
+      description: boolen value input given
+      required: false
+      type: 'boolean'
+      default: 'false'
+    
