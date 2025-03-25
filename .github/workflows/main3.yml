@@ -1,0 +1,39 @@
+name: Deploy App
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_env:
+        description: 'Select the deployment environment'
+        required: true
+        default: 'dev'
+      app_version:
+        description: 'Select the application version'
+        required: true
+        default: 'v1.0'
+
+jobs:
+  validate-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Deployment Environment Choice
+        run: |
+          VALID_ENVIRONMENTS=("dev" "staging" "prod")
+          if [[ ! " ${VALID_ENVIRONMENTS[@]} " =~ " ${{ github.event.inputs.deploy_env }} " ]]; then
+            echo "❌ Invalid environment: ${{ github.event.inputs.deploy_env }}"
+            echo "Valid options: ${VALID_ENVIRONMENTS[*]}"
+            exit 1
+          fi
+          echo "✅ Environment is valid: ${{ github.event.inputs.deploy_env }}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: validate-inputs
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Inputs
+        run: |
+          echo "Deploying to environment: ${{ github.event.inputs.deploy_env }}"
+          echo "Deploying version: ${{ github.event.inputs.app_version }}"
