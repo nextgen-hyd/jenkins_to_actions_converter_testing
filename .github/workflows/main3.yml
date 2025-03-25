@@ -11,6 +11,19 @@ on:
         description: 'Select the application version'
         required: true
         default: 'v1.0'
+      environment:
+        type: environment
+        description: Select the environment
+      boolean:
+        type: boolean
+        description: True or False
+      choice:
+        type: choice
+        description: Make a choice
+        options:
+        - foo
+        - bar
+        - baz
 
 jobs:
   validate-inputs:
