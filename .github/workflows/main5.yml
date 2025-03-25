@@ -4,6 +4,7 @@ on:
     inputs:
       choice_inputs:
         description: Select one choice parameter
+        type: choice
         options:
         - option 1
         - option 2
