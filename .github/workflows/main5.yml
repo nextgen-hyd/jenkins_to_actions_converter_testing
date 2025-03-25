@@ -19,5 +19,4 @@ on:
         description: boolen value input given
         required: false
         type: 'boolean'
-        default: 'false'
     
