@@ -1,0 +1,32 @@
+name: Example1
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  create_a_file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: create a file
+      run: touch sample.txt
+    - name: list the files
+      run: ls 
+  
+  add_input_to_file:
+    needs: create_a_file
+    runs-on: ubuntu-latest
+    steps:
+      - name: add input to file
+        run: echo "hello" > sample.txt
+      - name: list files
+        run: ls
+      - name: cat the file
+        run: cat sample.txt
+      - name: Archive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample.txt
+          path: sample.txt
+
+
