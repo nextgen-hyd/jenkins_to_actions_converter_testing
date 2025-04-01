@@ -1,23 +1,49 @@
-name: Testing Inputs
-on: 
+name: CI/CD Pipeline
+'on':
   workflow_dispatch:
     inputs:
-      choice_inputs:
-        description: Select one choice parameter
+      Generation:
+        description: Intel processor generation
+      Optimization:
+        description: Use Intel optimized instance type or not
         type: choice
         options:
-        - option 1
-        - option 2
-        - option 3
-  
-      string_inputs:
-        description: give the string input
-        required: true
-        default: default_value_added
-  
-      boolean_inputs:
-        description: boolen value input given
-        required: false
-        type: 'boolean'
-        default: true
-    
+        - Optimized
+        - Non-Optimized
+      InstanceType:
+        description: EC2 instance type to provision
+      OS:
+        description: Operating system for the EC2 instance
+        type: choice
+        options:
+        - Ubuntu
+      DB:
+        description: Select DB
+        type: choice
+        options:
+        - Postgres
+        - MySQL
+      Harness:
+        description: Select Harness
+        type: choice
+        options:
+        - HammerDB
+      VolumeType:
+        description: EBS volume type
+        type: choice
+        options:
+        - gp2
+        - gp3
+        - io1
+        - io2
+        - sc1
+        - st1
+        - standard
+      VolumeSize:
+        description: Size of EBS volume in GB
+        type: choice
+        options:
+        - '50'
+        - '100'
+        - '150'
+        - '200'
