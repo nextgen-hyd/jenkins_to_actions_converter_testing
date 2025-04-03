@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Development
-      run: echo "running on main development branch"
+      run: echo "running on development branch"
   Checkoutcode:
     runs-on: ubuntu-latest
     steps:
