@@ -8,22 +8,21 @@ name: When Condition
     - '!master'
   schedule:
   - cron: '1 13 * * 1-5 '
+  workflow_dispatch:
 jobs:
   Non-master:
-    if: github.ref != 'refs/heads/master'
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
     - name: Non-master
-      run: '#!/bin/bash'
+      run: echo "running on main branch"
   Development:
     if: github.ref == 'refs/heads/development'
     runs-on: ubuntu-latest
     steps:
     - name: Development
-      run: '#!/bin/bash
-
-        do-non-development.sh'
-  Checkout code:
+      run: echo "running on main development branch"
+  Checkoutcode:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
