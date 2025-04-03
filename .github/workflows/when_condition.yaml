@@ -1,0 +1,32 @@
+name: When Condition
+'on':
+  push:
+    branches:
+    - main
+    - development
+    - '*'
+    - '!master'
+  schedule:
+  - cron: '1 13 * * 1-5 '
+jobs:
+  Non-master:
+    if: github.ref != 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Non-master
+      run: '#!/bin/bash'
+  Development:
+    if: github.ref == 'refs/heads/development'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Development
+      run: '#!/bin/bash
+
+        do-non-development.sh'
+  Checkout code:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        repository: DaggupatiPavan/java-web-app-docker
