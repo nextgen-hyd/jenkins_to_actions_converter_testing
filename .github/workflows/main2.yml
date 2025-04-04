@@ -1,5 +1,4 @@
 name: Deploy Workflow with Manual Approval
- 
 on:
   workflow_dispatch:
     inputs:
