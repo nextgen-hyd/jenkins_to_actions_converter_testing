@@ -53,14 +53,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build
-      run: '#!/bin/bash
-
-        mvn clean install'
+      run: |
+        #!/bin/bash
+        mvn clean install
   release:
     runs-on: ubuntu-latest
     steps:
     - name: Release
-      run: '#!/bin/bash
+      run: |
+        '#!/bin/bash
 
         curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -T target/your-artifact-${RELEASE_VERSION}.jar
         ${ARTIFACTORY_REPO}/your-artifact-${RELEASE_VERSION}.jar
@@ -86,14 +87,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run Commands over SSH
-      run: '#!/bin/bash
+      run: |
+        '#!/bin/bash
 
         ssh -o StrictHostKeyChecking=no user@hostname "your-remote-command"'
   syncToS3:
     runs-on: ubuntu-latest
     steps:
     - name: Sync to S3
-      run: '#!/bin/bash
+      run: |
+        '#!/bin/bash
 
         aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
   uploadArtifact:
