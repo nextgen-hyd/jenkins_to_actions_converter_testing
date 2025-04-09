@@ -20,26 +20,6 @@ name: End to End Test
         description: Code URL for ML Job Consumption
       ENERGY_METRICS_SERVER_IP:
         description: Server IP for Energy Metrics
-      ENERGY_METRICS_USERNAME:
-        description: Username for Energy Metrics
-      ENERGY_METRICS_PASSWORD:
-        description: Password for Energy Metrics
-      WORKLOAD_BENCHMARKING_APP:
-        description: Enter app deploy URL
-      WORKLOAD_BENCHMARKING_WORKLOAD:
-        description: Enter workload deploy URL
-      WORKLOAD_BENCHMARKING_INSTANCE:
-        description: Enter Instance type
-      TURN_OFF_WORKLOADS_WEEKDAYS:
-        description: Weekdays for Turn Off Workloads
-      TURN_OFF_WORKLOADS_START_TIME:
-        description: Start time for Turn Off Workloads
-      TURN_OFF_WORKLOADS_STOP_TIME:
-        description: Stop time for Turn Off Workloads
-      TURN_OFF_WORKLOADS_WEEKENDS:
-        description: Apply to weekends for Turn Off Workloads
-      PRECHECKS_TOOL:
-        description: Tools selected for Prechecks
   schedule:
   - cron: '1 13 * * 1-5 '
   push:
