@@ -34,19 +34,14 @@ jobs:
     steps:
     - name: Non-master
       run: '#!/bin/bash'
-      branchesAll:
-      - main
-      - '!master'
+      
   Development:
     if: github.ref == 'refs/heads/development'
     runs-on: ubuntu-latest
     steps:
     - name: Development
       run: echo "Building for development branch"
-      branchesAll:
-      - main
-      - '!master'
-      - development
+      
   checkoutCode:
     runs-on: ubntu-latest
     steps:
