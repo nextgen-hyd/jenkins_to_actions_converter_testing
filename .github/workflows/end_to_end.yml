@@ -55,9 +55,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build
-      run: echo "Building for development branch"
-           echo "second line"
-           echo "third line"
+      run: 'echo "Building for development branch"; echo "second line"; echo "third line"'
+
   release:
     runs-on: ubuntu-latest
     steps:
