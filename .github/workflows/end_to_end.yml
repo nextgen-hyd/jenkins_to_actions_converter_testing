@@ -40,7 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Development
-      run: echo "Building for development branch"
+      run: echo "Building for development branch" 
+           echo "second line"
+           echo "third line"
       
   checkoutCode:
     runs-on: ubuntu-latest
@@ -53,8 +55,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build
-      run: |
-        echo "building"
+      run: echo "Building for development branch" 
+           echo "second line"
+           echo "third line"
   release:
     runs-on: ubuntu-latest
     steps:
