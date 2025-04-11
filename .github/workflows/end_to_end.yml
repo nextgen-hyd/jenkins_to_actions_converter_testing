@@ -54,15 +54,13 @@ jobs:
     steps:
     - name: Build
       run: |
-        #!/bin/bash
         echo "building"
   release:
     runs-on: ubuntu-latest
     steps:
     - name: Release
       run: |
-        '#!/bin/bash
-        echo "releasing update"'
+        echo "releasing update"
   approval:
     runs-on: ubuntu-latest
     needs: build
@@ -82,9 +80,8 @@ jobs:
     steps:
     - name: Run Commands over SSH
       run: |
-        '#!/bin/bash'
-
-        # ssh -o StrictHostKeyChecking=no user@hostname "your-remote-command"'
+        echo "running commands over ssh"
+      # ssh -o StrictHostKeyChecking=no user@hostname "your-remote-command"
   syncToS3:
     runs-on: ubuntu-latest
     steps:
@@ -92,7 +89,7 @@ jobs:
       run: |
         '#!/bin/bash'
 
-        # aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
+      # aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
   uploadArtifact:
     runs-on: ubuntu-latest
     steps:
