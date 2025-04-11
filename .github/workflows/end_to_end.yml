@@ -55,20 +55,14 @@ jobs:
     - name: Build
       run: |
         #!/bin/bash
-        mvn clean install
+        echo "building"
   release:
     runs-on: ubuntu-latest
     steps:
     - name: Release
       run: |
         '#!/bin/bash
-
-        curl -u ${ARTIFACTORY_USER}:${ARTIFACTORY_PASSWORD} -T target/your-artifact-${RELEASE_VERSION}.jar
-        ${ARTIFACTORY_REPO}/your-artifact-${RELEASE_VERSION}.jar
-
-        git tag -a v${RELEASE_VERSION} -m
-
-        git push origin --tags'
+        echo "releasing update"'
   approval:
     runs-on: ubuntu-latest
     needs: build
@@ -81,29 +75,33 @@ jobs:
     steps:
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      # with:
+        # ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
   runCommandsOverSsh:
     runs-on: ubuntu-latest
     steps:
     - name: Run Commands over SSH
       run: |
-        '#!/bin/bash
+        '#!/bin/bash'
 
-        ssh -o StrictHostKeyChecking=no user@hostname "your-remote-command"'
+        # ssh -o StrictHostKeyChecking=no user@hostname "your-remote-command"'
   syncToS3:
     runs-on: ubuntu-latest
     steps:
     - name: Sync to S3
       run: |
-        '#!/bin/bash
+        '#!/bin/bash'
 
-        aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
+        # aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
   uploadArtifact:
     runs-on: ubuntu-latest
     steps:
+    - name: creating a file
+      run: |
+        echo "artifact file" > output.pdf
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: my_artifact
         path: output.pdf
+    
