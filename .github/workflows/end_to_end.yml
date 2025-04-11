@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
+      # uses: webfactory/ssh-agent@v0.5.3
       # with:
         # ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
   runCommandsOverSsh:
@@ -87,7 +87,7 @@ jobs:
     steps:
     - name: Sync to S3
       run: |
-        '#!/bin/bash'
+        echo "running s3 sync"
 
       # aws s3 sync ./sync s3://${S3_BUCKET_NAME}/ --delete --region ${REGION}'
   uploadArtifact:
